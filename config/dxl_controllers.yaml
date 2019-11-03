@@ -7,9 +7,10 @@ finger1_joint_controller:
   joint_speed: 5.5
   joint_torque_limit: 0.3
   calib_speed: 1.0
-  calib_torque_limit: 0.3
+  calib_torque_limit: 0.1
   detect_limit_load: 0.17
   is_multiturn: true
+  ignored_errors: ['DXL_OVERLOAD_ERROR']
   motor:
     id: 1
     init: 3500
@@ -24,15 +25,15 @@ finger2_joint_controller:
   joint_speed: 5.5
   joint_torque_limit: 0.3
   calib_speed: 1.0
-  calib_torque_limit: 0.3
+  calib_torque_limit: 0.1
   detect_limit_load: 0.17
   is_multiturn: true
+  ignored_errors: ['DXL_OVERLOAD_ERROR']
   motor:
-    id: 1
+    id: 2
     init: 3500
     min: 0
     max: 3500
-# this joint rotate in opposite way
 finger3_joint_controller:
   controller:
     package: jsk_arc2017_baxter
@@ -42,9 +43,10 @@ finger3_joint_controller:
   joint_speed: 5.5
   joint_torque_limit: 0.3
   calib_speed: 1.0
-  calib_torque_limit: 0.3
+  calib_torque_limit: 0.1
   detect_limit_load: 0.17
   is_multiturn: true
+  ignored_errors: ['DXL_OVERLOAD_ERROR']
   motor:
     id: 3
     init: 0
