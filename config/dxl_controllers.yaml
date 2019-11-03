@@ -5,15 +5,15 @@ finger1_joint_controller:
     type: CalibRequiredJointController
   joint_name: finger1_joint_motor
   joint_speed: 5.5
-  joint_torque_limit: 0.3
+  joint_torque_limit: 0.4
   calib_speed: 1.0
-  calib_torque_limit: 0.1
+  calib_torque_limit: 0.2
   detect_limit_load: 0.17
   is_multiturn: true
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   motor:
     id: 1
-    init: 3500
+    init: 0
     min: 0
     max: 3500
 finger2_joint_controller:
@@ -23,15 +23,15 @@ finger2_joint_controller:
     type: CalibRequiredJointController
   joint_name: finger2_joint_motor
   joint_speed: 5.5
-  joint_torque_limit: 0.3
+  joint_torque_limit: 0.4
   calib_speed: 1.0
-  calib_torque_limit: 0.1
+  calib_torque_limit: 0.2
   detect_limit_load: 0.17
   is_multiturn: true
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   motor:
     id: 2
-    init: 3500
+    init: 0
     min: 0
     max: 3500
 finger3_joint_controller:
@@ -41,14 +41,14 @@ finger3_joint_controller:
     type: CalibRequiredJointController
   joint_name: finger3_joint_motor
   joint_speed: 5.5
-  joint_torque_limit: 0.3
+  joint_torque_limit: 0.4
   calib_speed: 1.0
-  calib_torque_limit: 0.1
+  calib_torque_limit: 0.2
   detect_limit_load: 0.17
   is_multiturn: true
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   motor:
     id: 3
-    init: 0
+    init: 3500
     min: 3500
     max: 0
