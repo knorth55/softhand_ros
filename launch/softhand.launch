@@ -1,12 +1,13 @@
 <launch>
+  <arg name="device" default="/dev/ttyUSB0" />
   <!-- dxl controller manager -->
   <node name="controller_manager" pkg="dynamixel_controllers" type="controller_manager.py"
         respawn="true" output="screen">
-    <rosparam>
+    <rosparam subst_value="true">
       namespace: dxl_manager
       serial_ports:
         port:
-          port_name: "/dev/ttyUSB0"
+          port_name: $(arg device)
           baud_rate: 1000000
           min_motor_id: 1
           max_motor_id: 3
