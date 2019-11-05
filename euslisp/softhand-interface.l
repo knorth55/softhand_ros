@@ -4,7 +4,10 @@
 
 (defclass softhand-interface
   :super propertied-object
-  :slots (finger1-command-topic-name
+  :slots (finger1-controller-name
+          finger2-controller-name
+          finger3-controller-name
+          finger1-command-topic-name
           finger2-command-topic-name
           finger3-command-topic-name
           finger1-calib-action-client
@@ -13,25 +16,34 @@
   ))
 
 (defmethod softhand-interface
-  (:init (&key (calibrate nil))
+  (:init (&key (calibrate nil) (namespace nil))
     (ros::rate 10)
-    (setq finger1-command-topic-name "/finger1_joint_controller/command")
-    (setq finger2-command-topic-name "/finger2_joint_controller/command")
-    (setq finger3-command-topic-name "/finger3_joint_controller/command")
+    (setq finger1-controller-name
+          (format nil "~A/finger1_joint_controller" (if namespace namespace "")))
+    (setq finger2-controller-name
+          (format nil "~A/finger2_joint_controller" (if namespace namespace "")))
+    (setq finger3-controller-name
+          (format nil "~A/finger3_joint_controller" (if namespace namespace "")))
+    (setq finger1-command-topic-name
+          (format nil "~A/command" finger1-controller-name))
+    (setq finger2-command-topic-name
+          (format nil "~A/command" finger2-controller-name))
+    (setq finger3-command-topic-name
+          (format nil "~A/command" finger3-controller-name))
     (ros::advertise  finger1-command-topic-name std_msgs::Float64 1)
     (ros::advertise  finger2-command-topic-name std_msgs::Float64 1)
     (ros::advertise  finger3-command-topic-name std_msgs::Float64 1)
     (setq finger1-calib-action-client
           (instance ros::simple-action-client :init
-                    "/finger1_joint_controller/calib"
+                    (format nil "~A/calib" finger1-controller-name)
                     jsk_arc2017_baxter::CalibJointAction))
     (setq finger2-calib-action-client
           (instance ros::simple-action-client :init
-                    "/finger2_joint_controller/calib"
+                    (format nil "~A/calib" finger2-controller-name)
                     jsk_arc2017_baxter::CalibJointAction))
     (setq finger3-calib-action-client
           (instance ros::simple-action-client :init
-                    "/finger3_joint_controller/calib"
+                    (format nil "~A/calib" finger3-controller-name)
                     jsk_arc2017_baxter::CalibJointAction))
     (when calibrate (send self :calibrate))
     self)
