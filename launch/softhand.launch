@@ -1,5 +1,5 @@
 <launch>
-  <arg name="device" default="/dev/ttyUSB0" />
+  <arg name="device" default="/dev/rhand-ft2232c" />
   <!-- dxl controller manager -->
   <node name="controller_manager" pkg="dynamixel_controllers" type="controller_manager.py"
         respawn="true" output="screen">
