@@ -1,5 +1,5 @@
 (ros::roseus-add-msgs "std_msgs")
-(ros::roseus-add-msgs "jsk_arc2017_baxter")
+(ros::roseus-add-msgs "softhand_ros")
 
 
 (defclass softhand-interface
@@ -36,15 +36,15 @@
     (setq finger1-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger1-controller-name)
-                    jsk_arc2017_baxter::CalibJointAction))
+                    softhand_ros::CalibJointAction))
     (setq finger2-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger2-controller-name)
-                    jsk_arc2017_baxter::CalibJointAction))
+                    softhand_ros::CalibJointAction))
     (setq finger3-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger3-controller-name)
-                    jsk_arc2017_baxter::CalibJointAction))
+                    softhand_ros::CalibJointAction))
     (when calibrate (send self :calibrate))
     self)
   (:calibrate ()
@@ -68,13 +68,13 @@
       (ros::spin-once)))
   (:start-finger1-calib ()
     (send finger1-calib-action-client :send-goal
-          (instance jsk_arc2017_baxter::CalibJointActionGoal :init)))
+          (instance softhand_ros::CalibJointActionGoal :init)))
   (:start-finger2-calib ()
     (send finger2-calib-action-client :send-goal
-          (instance jsk_arc2017_baxter::CalibJointActionGoal :init)))
+          (instance softhand_ros::CalibJointActionGoal :init)))
   (:start-finger3-calib ()
     (send finger3-calib-action-client :send-goal
-          (instance jsk_arc2017_baxter::CalibJointActionGoal :init)))
+          (instance softhand_ros::CalibJointActionGoal :init)))
   (:finger1-calibratingp ()
     (ros::spin-once)
     (eq (send finger1-calib-action-client :get-state) ros::*simple-goal-state-active*))

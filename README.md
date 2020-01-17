@@ -1,4 +1,5 @@
 # softhand_ros
+[![Build Status](https://api.travis-ci.com/knorth55/softhand_ros.svg?branch=master)](https://travis-ci.com/knorth55/softhand_ros)
 
 ROS package for SoftHand
 
