@@ -1,6 +1,6 @@
 finger1_joint_controller:
   controller:
-    package: jsk_arc2017_baxter
+    package: softhand_ros
     module: calib_required_joint_controller
     type: CalibRequiredJointController
   joint_name: finger1_joint_motor
@@ -18,7 +18,7 @@ finger1_joint_controller:
     max: 3500
 finger2_joint_controller:
   controller:
-    package: jsk_arc2017_baxter
+    package: softhand_ros
     module: calib_required_joint_controller
     type: CalibRequiredJointController
   joint_name: finger2_joint_motor
@@ -36,7 +36,7 @@ finger2_joint_controller:
     max: 3500
 finger3_joint_controller:
   controller:
-    package: jsk_arc2017_baxter
+    package: softhand_ros
     module: calib_required_joint_controller
     type: CalibRequiredJointController
   joint_name: finger3_joint_motor
