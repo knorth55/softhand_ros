@@ -25,7 +25,7 @@ catkin build
 ```bash
 source ~/softhand_ws/devel/setup.bash
 roscd softhand_ros
-sudo cp udev/80-ft2232c.rules /etc/udev/rules.d
+sudo cp udev/*.rules /etc/udev/rules.d
 sudo service udev reload
 sudo service udev restart
 ```

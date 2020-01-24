@@ -1,5 +1,5 @@
 <launch>
-  <arg name="device" default="/dev/ttyUSB0" />
+  <arg name="device" default="/dev/lhand-e151" />
 
   <include file="$(find softhand_ros)/launch/softhand.launch">
     <arg name="hand" value="left" />
