@@ -52,17 +52,21 @@ roseus softhand-interface.l
 
 # Softhand hardware installation
 
-## Dynamixel setup
+## Set baud rate 
 
-### Dynamixel IDs
+```bash
+# set baud rate to 1000000
+rosrun dynamixel_driver set_servo_config.py -b OLD_BAUD_RATE -r 1 MOTOR_ID 
+```
+
+### Set motor ID
 
 - 1: Thumb
 - 2: Index finger
 - 3: Middle finger
 
 ```bash
-rosrun dynamixel_driver set_servo_config.py -b 57600 -r 1 1
-rosrun dynamixel_driver change_id.py 1 1
+rosrun dynamixel_driver change_id.py OLD_MOTOR_ID NEW_MOTOR_ID
 ```
 
 ### Disable overload error
@@ -72,7 +76,7 @@ import roslib
 roslib.load_manifest('dynamixel_driver')
 from dynamixel_driver import dynamixel_io
 
-dxl_io = dynamixel_io.DynamixelIO("/dev/dxhub", 57600)
-dxl_io.write(1, 17, (4,))
-dxl_io.write(1, 18, (4,))
+dxl_io = dynamixel_io.DynamixelIO("/dev/ttyUSB0", 1000000)
+dxl_io.write(MOTOR_ID, 17, (4,))
+dxl_io.write(MOTOR_ID, 18, (4,))
 ```
