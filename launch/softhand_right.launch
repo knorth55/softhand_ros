@@ -1,0 +1,8 @@
+<launch>
+  <arg name="device" default="/dev/rhand-ft2232c" />
+
+  <include file="$(find softhand_ros)/launch/softhand.launch">
+    <arg name="hand" value="right" />
+    <arg name="device" value="$(arg device)" />
+  </include>
+</launch>

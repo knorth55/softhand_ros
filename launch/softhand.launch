@@ -1,5 +1,7 @@
 <launch>
-  <arg name="device" default="/dev/rhand-ft2232c" />
+  <arg name="hand" />
+  <arg name="device" />
+
   <!-- dxl controller manager -->
   <node name="controller_manager" pkg="dynamixel_controllers" type="controller_manager.py"
         respawn="true" output="screen">
@@ -15,7 +17,7 @@
     </rosparam>
   </node>
   <!-- dxl controller spawner -->
-  <rosparam file="$(find softhand_ros)/config/dxl_controllers.yaml"
+  <rosparam file="$(find softhand_ros)/config/$(arg hand)_hand/dxl_controllers.yaml"
             command="load"/>
   <node name="controller_spawner"
         pkg="dynamixel_controllers" type="controller_spawner.py"
