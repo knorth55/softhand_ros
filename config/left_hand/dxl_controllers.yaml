@@ -13,7 +13,7 @@ finger1_joint_controller:
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   motor:
     id: 1
-    init: 0
+    init: 3500
     min: 3500
     max: 0
 finger2_joint_controller:
@@ -31,7 +31,7 @@ finger2_joint_controller:
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   motor:
     id: 2
-    init: 0
+    init: 3500
     min: 3500
     max: 0
 finger3_joint_controller:
@@ -49,6 +49,6 @@ finger3_joint_controller:
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   motor:
     id: 3
-    init: 3500
+    init: 0
     min: 0
     max: 3500
