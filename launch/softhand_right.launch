@@ -1,5 +1,5 @@
 <launch>
-  <arg name="device" default="/dev/rhand-ft2232c" />
+  <arg name="device" default="/dev/rhand-e151" />
 
   <include file="$(find softhand_ros)/launch/softhand.launch">
     <arg name="hand" value="right" />

@@ -1,3 +1,3 @@
 # Create symlink /dev/{r/l}hand-e151
-SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ENV{ID_USB_INTERFACE_NUM}=="00", GROUP="dialout", MODE="0666", SYMLINK+="lhand-e151"
-# SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ENV{ID_USB_INTERFACE_NUM}=="00", GROUP="dialout", MODE="0666", SYMLINK+="rhand-e151"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ATTRS{product}=="LEFT-E151", ENV{ID_USB_INTERFACE_NUM}=="00", GROUP="dialout", MODE="0666", SYMLINK+="lhand-e151"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ATTRS{product}=="RIGHT-E151", ENV{ID_USB_INTERFACE_NUM}=="00", GROUP="dialout", MODE="0666", SYMLINK+="rhand-e151"
