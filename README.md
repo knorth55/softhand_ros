@@ -80,3 +80,23 @@ dxl_io = dynamixel_io.DynamixelIO("/dev/ttyUSB0", 1000000)
 dxl_io.write(MOTOR_ID, 17, (4,))
 dxl_io.write(MOTOR_ID, 18, (4,))
 ```
+
+### Change `product` to distinguish E151 board
+
+We distinguish left and right hand with `product` field of FTDI chip on E151.
+- Left E151's `product`: `LEFT-E151`
+- Right E151's `product`: `RIGHT-E151`
+
+In order to change them, please follow [jsk_apc doc](https://jsk-apc.readthedocs.io/en/latest/jsk_arc2017_baxter/setup_gripper_v6.html#distinguish-left-dxhub-from-right-one).
+
+If you don't have windows, you can do it with [richardeoin/ftx-prog](https://github.com/richardeoin/ftx-prog) as follows.
+
+```bash
+git clone https://github.com/richardeoin/ftx-prog.git
+cd ftx-prog/
+make
+# for left hand
+sudo ./ftx-prog --product LEFT-E151
+# for left hand
+sudo ./ftx-prog --product RIGHT-E151
+```
