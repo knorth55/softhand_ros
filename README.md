@@ -56,7 +56,7 @@ roseus softhand-interface.l
 
 ```bash
 # set baud rate to 1000000
-rosrun dynamixel_driver set_servo_config.py -b OLD_BAUD_RATE -r 1 MOTOR_ID 
+rosrun dynamixel_driver set_servo_config.py -b BAUD_RATE -r 1 MOTOR_ID 
 ```
 
 ### Set motor ID
