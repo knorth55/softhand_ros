@@ -5,16 +5,20 @@ finger1_joint_controller:
     type: CalibRequiredJointController
   joint_name: finger1_joint_motor
   joint_speed: 5.5
-  joint_torque_limit: 0.4
+  joint_torque_limit: 0.6
   calib_speed: 1.0
   calib_torque_limit: 0.2
   detect_limit_load: 0.17
   is_multiturn: true
   ignored_errors: ['DXL_OVERLOAD_ERROR']
+  # dynamixel -> eus
+  # 8192 -> -2 * pi
+  # 4096 -> 0
+  # 0 -> 2 * pi
   motor:
     id: 1
-    init: 3500
-    min: 3500
+    init: 4096
+    min: 8192
     max: 0
 finger2_joint_controller:
   controller:
@@ -23,16 +27,20 @@ finger2_joint_controller:
     type: CalibRequiredJointController
   joint_name: finger2_joint_motor
   joint_speed: 5.5
-  joint_torque_limit: 0.4
+  joint_torque_limit: 0.6
   calib_speed: 1.0
   calib_torque_limit: 0.2
   detect_limit_load: 0.17
   is_multiturn: true
   ignored_errors: ['DXL_OVERLOAD_ERROR']
+  # dynamixel -> eus
+  # 8192 -> -2 * pi
+  # 4096 -> 0
+  # 0 -> 2 * pi
   motor:
     id: 2
-    init: 3500
-    min: 3500
+    init: 4096
+    min: 8192
     max: 0
 finger3_joint_controller:
   controller:
@@ -41,14 +49,18 @@ finger3_joint_controller:
     type: CalibRequiredJointController
   joint_name: finger3_joint_motor
   joint_speed: 5.5
-  joint_torque_limit: 0.4
+  joint_torque_limit: 0.6
   calib_speed: 1.0
   calib_torque_limit: 0.2
   detect_limit_load: 0.17
   is_multiturn: true
   ignored_errors: ['DXL_OVERLOAD_ERROR']
+  # dynamixel -> eus
+  # 0 -> -2 * pi
+  # 4096 -> 0
+  # 8192 -> 2 * pi
   motor:
     id: 3
-    init: 0
+    init: 4096
     min: 0
-    max: 3500
+    max: 8192
