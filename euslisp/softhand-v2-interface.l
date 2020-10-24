@@ -28,6 +28,8 @@
           (format nil "~A/finger2_joint_controller" (if namespace namespace "")))
     (setq finger3-controller-name
           (format nil "~A/finger3_joint_controller" (if namespace namespace "")))
+    (setq thumb-command-topic-name
+          (format nil "~A/command" thumb-controller-name))
     (setq finger1-command-topic-name
           (format nil "~A/command" finger1-controller-name))
     (setq finger2-command-topic-name
@@ -103,7 +105,7 @@
     (send self :finger3-rotate angle))
   (:thumb-rotate (angle)
     (let ((msg (instance std_msgs::Float64 :init :data angle)))
-      (ros::publish finger1-command-topic-name msg)))
+      (ros::publish thumb-command-topic-name msg)))
   (:finger1-rotate (angle)
     (let ((msg (instance std_msgs::Float64 :init :data angle)))
       (ros::publish finger1-command-topic-name msg)))
