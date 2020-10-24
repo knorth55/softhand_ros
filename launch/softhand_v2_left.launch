@@ -1,0 +1,8 @@
+<launch>
+  <arg name="device" default="/dev/lhand-v2-e151" />
+
+  <include file="$(find softhand_ros)/launch/softhand_v2.launch">
+    <arg name="hand" value="left" />
+    <arg name="device" value="$(arg device)" />
+  </include>
+</launch>

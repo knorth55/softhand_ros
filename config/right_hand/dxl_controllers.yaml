@@ -12,9 +12,9 @@ finger1_joint_controller:
   is_multiturn: true
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   # dynamixel -> eus
-  # 0 -> -2 * pi
-  # 4096 -> 0
-  # 8192 -> 2 * pi
+  # init: 4096 -> 0
+  # min : 0    -> -2 * pi
+  # max : 8192 -> 2 * pi
   motor:
     id: 1
     init: 4096
@@ -34,9 +34,9 @@ finger2_joint_controller:
   is_multiturn: true
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   # dynamixel -> eus
-  # 0 -> -2 * pi
-  # 4096 -> 0
-  # 8192 -> 2 * pi
+  # init: 4096 -> 0
+  # min : 0    -> -2 * pi
+  # max : 8192 -> 2 * pi
   motor:
     id: 2
     init: 4096
@@ -56,9 +56,9 @@ finger3_joint_controller:
   is_multiturn: true
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   # dynamixel -> eus
-  # 8192 -> -2 * pi
-  # 4096 -> 0
-  # 0 -> 2 * pi
+  # init: 4096 -> 0
+  # min : 8192 -> -2 * pi
+  # max : 0    -> 2 * pi
   motor:
     id: 3
     init: 4096

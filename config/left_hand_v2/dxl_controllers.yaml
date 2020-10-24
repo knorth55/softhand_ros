@@ -1,3 +1,20 @@
+thumb_joint_controller:
+  controller:
+    package: dynamixel_controllers
+    module: joint_position_controller
+    type: JointPositionController
+  joint_name: thumb_joint
+  joint_speed: 2.0
+  joint_torque_limit: 0.6
+  # dynamixel -> eus
+  # init: 1024 -> 0
+  # min:  1024 -> 0
+  # max:  2048 -> 0.5 * pi
+  motor:
+    id: 1
+    init: 1024
+    min: 1024
+    max: 2048
 finger1_joint_controller:
   controller:
     package: softhand_ros
@@ -13,13 +30,13 @@ finger1_joint_controller:
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   # dynamixel -> eus
   # init: 4096 -> 0
-  # min : 8192 -> -2 * pi
-  # max : 0    -> 2 * pi
+  # min:  0    -> -2 * pi
+  # max:  8192 -> 2 * pi
   motor:
-    id: 1
+    id: 2
     init: 4096
-    min: 8192
-    max: 0
+    min: 0
+    max: 8192
 finger2_joint_controller:
   controller:
     package: softhand_ros
@@ -35,10 +52,10 @@ finger2_joint_controller:
   ignored_errors: ['DXL_OVERLOAD_ERROR']
   # dynamixel -> eus
   # init: 4096 -> 0
-  # min : 8192 -> -2 * pi
-  # max : 0    -> 2 * pi
+  # min:  8192 -> -2 * pi
+  # max:  0    -> 2 * pi
   motor:
-    id: 2
+    id: 3
     init: 4096
     min: 8192
     max: 0
@@ -60,7 +77,7 @@ finger3_joint_controller:
   # min : 0    -> -2 * pi
   # max : 8192 -> 2 * pi
   motor:
-    id: 3
+    id: 4
     init: 4096
     min: 0
     max: 8192
