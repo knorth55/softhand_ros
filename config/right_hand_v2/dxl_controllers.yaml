@@ -81,3 +81,9 @@ finger3_joint_controller:
     init: 4096
     min: 8192
     max: 0
+dxmio_heater_controller:
+  controller:
+    package: softhand_ros
+    module: dxmio_heater_controller
+    type: DxmioHeaterController
+  joint_name: dxmio_heater
