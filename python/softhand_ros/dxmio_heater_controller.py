@@ -29,13 +29,14 @@ class DxmioHeaterController(object):
         self.dxl_io = dxl_io
         self.controller_namespace = controller_namespace
         self.port_namespace = port_namespace
+        self.motor_id = rospy.get_param(self.controller_namespace + '/motor/id')
         self.joint_name = rospy.get_param(self.controller_namespace + '/joint_name')
 
         # joint_state
         self.joint_state = JointState(name=self.joint_name, motor_ids=[self.motor_id])
 
     def initialize(self):
-        raise NotImplementedError
+        return True
 
     def start(self):
         self.running = True

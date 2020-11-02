@@ -87,3 +87,5 @@ dxmio_heater_controller:
     module: dxmio_heater_controller
     type: DxmioHeaterController
   joint_name: dxmio_heater
+  motor:
+    id: 5
