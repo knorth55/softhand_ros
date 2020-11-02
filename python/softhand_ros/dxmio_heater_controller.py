@@ -1,4 +1,5 @@
 import math
+import threading
 
 import rospy
 
@@ -31,6 +32,7 @@ class DxmioHeaterController(object):
         self.port_namespace = port_namespace
         self.motor_id = rospy.get_param(self.controller_namespace + '/motor/id')
         self.joint_name = rospy.get_param(self.controller_namespace + '/joint_name')
+        self.lock = threading.Lock()
 
         # joint_state
         self.joint_state = JointState(name=self.joint_name, motor_ids=[self.motor_id])
@@ -57,19 +59,30 @@ class DxmioHeaterController(object):
     def set_pwm_duty(self, address, pwm_duty):
         sid = self.motor_id
         pwm_duty = min (pwm_duty, 0.1) # PWM duty limit for circuit protection
-        pwm_duty *= 65535 # PWM duty conversion 1.0 -> 65535
+        pwm_duty = int(65535 * pwm_duty) # PWM duty conversion 1.0 -> 65535
         pwm_duty &= 0xffff
         loVal = int(pwm_duty % 256) # split pwm_duty into 2 bytes
         hiVal = int(pwm_duty >> 8)
-        writeableVals = [] # prepare value tuples for call to syncwrite
-        writeableVals.append( (sid, loVal, hiVal) )
-        self.sync_write(address, writeableVals) # use sync write to broadcast multi servo message
-
+        # writeableVals = [] # prepare value tuples for call to syncwrite
+        # writeableVals.append( (sid, loVal, hiVal) )
+        self.dxl_io.write(sid, address, (loVal, hiVal)) # use sync write to broadcast multi servo message
+        rospy.loginfo('address: {}'.format(address))
+        rospy.loginfo('pwm_duty: {}'.format(pwm_duty))
+        
     def process_command1(self, msg):
-        self.set_pwm_duty(DXMIO_PWM_DUTY_0, msg.data)
+        with self.lock:
+            self.set_pwm_duty(DXMIO_PWM_DUTY_0, msg.data)
+            rospy.loginfo('command1 done')
+            rospy.sleep(1.0)
 
     def process_command2(self, msg):
-        self.set_pwm_duty(DXMIO_PWM_DUTY_1, msg.data)
+        with self.lock:
+            self.set_pwm_duty(DXMIO_PWM_DUTY_1, msg.data)
+            rospy.loginfo('command2 done')
+            rospy.sleep(1.0)
 
     def process_command3(self, msg):
-        self.set_pwm_duty(DXMIO_PWM_DUTY_2, msg.data)
+        with self.lock:
+            self.set_pwm_duty(DXMIO_PWM_DUTY_2, msg.data)
+            rospy.loginfo('command3 done')
+            rospy.sleep(1.0)
