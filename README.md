@@ -11,9 +11,7 @@ ROS package for SoftHand
 source /opt/ros/$ROS_DISTRO/setup.bash
 mkdir ~/softhand_ws/src -p
 cd ~/softhand_ws/src
-git clone https://github.com/knorth55/softhand_ros.git
-wstool init
-wstool merge softhand_ros/fc.rosinstall
+wget https://raw.githubusercontent.com/knorth55/softhand_ros/master/fc.rosinstall -O .rosinstall 
 wstool up
 rosdep install --ignore-src --from-paths . -y -r -i
 cd ~/softhand_ws
