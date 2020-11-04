@@ -1,0 +1,4 @@
+- git:
+    local-name: pazeshun/dynamixel_motor
+    uri: https://github.com/pazeshun/dynamixel_motor.git
+    version: gripper-v6-devel
