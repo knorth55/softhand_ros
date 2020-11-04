@@ -1,5 +1,5 @@
 # softhand_ros
-[![](https://img.shields.io/github/workflow/status/knorth55/softhand_ros/CI)](https://github.com/knorth55/softhand_ros/actions)
+[![](https://img.shields.io/github/workflow/status/knorth55/softhand_ros/CI/master)](https://github.com/knorth55/softhand_ros/actions)
 
 ROS package for SoftHand
 
