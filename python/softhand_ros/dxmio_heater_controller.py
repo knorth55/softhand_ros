@@ -73,16 +73,16 @@ class DxmioHeaterController(object):
         with self.lock:
             self.set_pwm_duty(DXMIO_PWM_DUTY_0, msg.data)
             rospy.loginfo('command1 done')
-            rospy.sleep(1.0)
+            # rospy.sleep(1.0)
 
     def process_command2(self, msg):
         with self.lock:
             self.set_pwm_duty(DXMIO_PWM_DUTY_1, msg.data)
             rospy.loginfo('command2 done')
-            rospy.sleep(1.0)
+            # rospy.sleep(1.0)
 
     def process_command3(self, msg):
         with self.lock:
             self.set_pwm_duty(DXMIO_PWM_DUTY_2, msg.data)
             rospy.loginfo('command3 done')
-            rospy.sleep(1.0)
+            # rospy.sleep(1.0)
