@@ -10,9 +10,9 @@
       serial_ports:
         port:
           port_name: $(arg device)
-          baud_rate: 1000000
+          baud_rate: 57413
           min_motor_id: 1
-          max_motor_id: 4
+          max_motor_id: 5
           update_rate: 20
     </rosparam>
   </node>
@@ -26,6 +26,7 @@
               thumb_joint_controller
               finger1_joint_controller
               finger2_joint_controller
-              finger3_joint_controller"
+              finger3_joint_controller
+              dxmio_heater_controller"
         output="screen" />
 </launch>

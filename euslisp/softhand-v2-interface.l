@@ -12,6 +12,7 @@
           finger1-command-topic-name
           finger2-command-topic-name
           finger3-command-topic-name
+          heater-command-topic-name
           finger1-calib-action-client
           finger2-calib-action-client
           finger3-calib-action-client
@@ -28,6 +29,8 @@
           (format nil "~A/finger2_joint_controller" (if namespace namespace "")))
     (setq finger3-controller-name
           (format nil "~A/finger3_joint_controller" (if namespace namespace "")))
+    (setq heater-controller-name
+          (format nil "~A/dxmio_heater_controller" (if namespace namespace "")))
     (setq thumb-command-topic-name
           (format nil "~A/command" thumb-controller-name))
     (setq finger1-command-topic-name
@@ -36,10 +39,19 @@
           (format nil "~A/command" finger2-controller-name))
     (setq finger3-command-topic-name
           (format nil "~A/command" finger3-controller-name))
+    (setq heater1-command-topic-name
+          (format nil "~A/command1" heater-controller-name))
+    (setq heater2-command-topic-name
+          (format nil "~A/command2" heater-controller-name))
+    (setq heater3-command-topic-name
+          (format nil "~A/command3" heater-controller-name))
     (ros::advertise thumb-command-topic-name std_msgs::Float64 1)
     (ros::advertise finger1-command-topic-name std_msgs::Float64 1)
     (ros::advertise finger2-command-topic-name std_msgs::Float64 1)
     (ros::advertise finger3-command-topic-name std_msgs::Float64 1)
+    (ros::advertise heater1-command-topic-name std_msgs::Float64 1)
+    (ros::advertise heater2-command-topic-name std_msgs::Float64 1)
+    (ros::advertise heater3-command-topic-name std_msgs::Float64 1)
     (setq finger1-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger1-controller-name)
@@ -114,7 +126,24 @@
       (ros::publish finger2-command-topic-name msg)))
   (:finger3-rotate (angle)
     (let ((msg (instance std_msgs::Float64 :init :data angle)))
-      (ros::publish finger3-command-topic-name msg))))
+      (ros::publish finger3-command-topic-name msg)))
+  (:start-heater ()
+    (send self :heater1-set 0.04)
+    (send self :heater2-set 0.04)
+    (send self :heater3-set 0.04)) 
+  (:stop-heater ()
+    (send self :heater1-set 0.0)
+    (send self :heater2-set 0.0)
+    (send self :heater3-set 0.0))
+  (:heater1-set (pwm_duty)
+    (let ((msg (instance std_msgs::Float64 :init :data pwm_duty)))
+      (ros::publish heater1-command-topic-name msg)))
+  (:heater2-set (pwm_duty)
+    (let ((msg (instance std_msgs::Float64 :init :data pwm_duty)))
+      (ros::publish heater2-command-topic-name msg)))
+  (:heater3-set (pwm_duty)
+    (let ((msg (instance std_msgs::Float64 :init :data pwm_duty)))
+      (ros::publish heater3-command-topic-name msg))))
 
 (defun softhand-v2-init ()
   (ros::roseus "softhand_v2_interface")
