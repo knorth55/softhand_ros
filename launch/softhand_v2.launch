@@ -10,7 +10,7 @@
       serial_ports:
         port:
           port_name: $(arg device)
-          baud_rate: 57413
+          baud_rate: 57600
           min_motor_id: 1
           max_motor_id: 5
           update_rate: 20
