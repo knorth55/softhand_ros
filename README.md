@@ -3,9 +3,14 @@
 
 ROS package for SoftHand
 
-# Installation
+## Note
 
-## Workspace build
+This package depends on the branch below.
+- [tohirose/dynamixel_motor@softhand-v2-devel](https://github.com/tohirose/dynamixel_motor/tree/softhand-v2-devel)
+
+## Installation
+
+### Workspace build
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
@@ -18,7 +23,7 @@ cd ~/softhand_ws
 catkin build
 ```
 
-## Udev installation
+### Udev installation
 
 ```bash
 source ~/softhand_ws/devel/setup.bash
@@ -28,11 +33,11 @@ sudo service udev reload
 sudo service udev restart
 ```
 
-# How to use 
+## How to use 
 
-## Launch softhand
+### Launch softhand
 
-### For softhand v1
+#### For softhand v1
 
 ```bash
 source ~/softhand_ws/devel/setup.bash
@@ -42,7 +47,7 @@ roslaunch softhand_ros softhand_left.launch
 roslaunch softhand_ros softhand_right.launch
 ```
 
-### For softhand v2
+#### For softhand v2
 
 ```bash
 source ~/softhand_ws/devel/setup.bash
@@ -52,9 +57,9 @@ roslaunch softhand_ros softhand_v2_left.launch
 roslaunch softhand_ros softhand_v2_right.launch
 ```
 
-## Control softhand by euslisp
+### Control softhand by euslisp
 
-### For softhand v1
+#### For softhand v1
 
 ```bash
 source ~/softhand_ws/devel/setup.bash
@@ -66,7 +71,7 @@ roseus softhand-interface.l
 # (send *ri* :stop-grasp)
 ```
 
-### For softhand v2
+#### For softhand v2
 
 ```bash
 source ~/softhand_ws/devel/setup.bash
@@ -80,46 +85,46 @@ roseus softhand-v2-interface.l
 # (send *ri* :stop-grasp)
 ```
 
-# Softhand hardware installation
+## Softhand hardware installation
 
-## Set baud rate
+### Set baud rate
 
-### For softhand v1
+#### For softhand v1
 
 ```bash
 # set baud rate to 1000000
 rosrun dynamixel_driver set_servo_config.py -b 1000000 -r 1 MOTOR_ID 
 ```
 
-### For softhand v2
+#### For softhand v2
 
 ```bash
 # set baud rate to 57413
 rosrun dynamixel_driver set_servo_config.py -b 57413 -r 1 MOTOR_ID 
 ```
 
-## Set motor ID
+### Set motor ID
 
 ```bash
 rosrun dynamixel_driver change_id.py OLD_MOTOR_ID NEW_MOTOR_ID
 ```
 
-### Motor IDs of Softhand v1
+#### Motor IDs of Softhand v1
 
 - 1: Thumb
 - 2: Index finger
 - 3: Middle finger
 
-### Motor IDs of Softhand v2
+#### Motor IDs of Softhand v2
 
 - 1: Thumb rotate
 - 2: Thumb
 - 3: Index finger
 - 4: Middle finger
 
-## Disable overload error
+### Disable overload error
 
-### For softhand v1
+#### For softhand v1
 
 ```python
 import roslib
@@ -132,7 +137,8 @@ dxl_io.write(MOTOR_ID, 17, (4,))
 dxl_io.write(MOTOR_ID, 18, (4,))
 ```
 
-### For softhand v2
+#### For softhand v2
+
 ```python
 import roslib
 roslib.load_manifest('dynamixel_driver')
@@ -144,7 +150,7 @@ dxl_io.write(MOTOR_ID, 17, (4,))
 dxl_io.write(MOTOR_ID, 18, (4,))
 ```
 
-### Change `product` to distinguish E151 board
+#### Change `product` to distinguish E151 board
 
 We distinguish left and right hand with `product` field of FTDI chip on E151.
 
