@@ -8,21 +8,23 @@
           finger1-controller-name
           finger2-controller-name
           finger3-controller-name
-          thumb-command-topic-name
           finger1-command-topic-name
           finger2-command-topic-name
           finger3-command-topic-name
-          heater-command-topic-name
           finger1-calib-action-client
           finger2-calib-action-client
           finger3-calib-action-client
+          heater-controller-name
+          heater1-command-topic-name
+          heater2-command-topic-name
+          heater3-command-topic-name
+          thumb-controller-name
+          thumb-command-topic-name
   ))
 
 (defmethod softhand-v2-interface
   (:init (&key (calibrate nil) (namespace nil))
     (ros::rate 10)
-    (setq thumb-controller-name
-          (format nil "~A/thumb_joint_controller" (if namespace namespace "")))
     (setq finger1-controller-name
           (format nil "~A/finger1_joint_controller" (if namespace namespace "")))
     (setq finger2-controller-name
@@ -31,8 +33,8 @@
           (format nil "~A/finger3_joint_controller" (if namespace namespace "")))
     (setq heater-controller-name
           (format nil "~A/dxmio_heater_controller" (if namespace namespace "")))
-    (setq thumb-command-topic-name
-          (format nil "~A/command" thumb-controller-name))
+    (setq thumb-controller-name
+          (format nil "~A/thumb_joint_controller" (if namespace namespace "")))
     (setq finger1-command-topic-name
           (format nil "~A/command" finger1-controller-name))
     (setq finger2-command-topic-name
@@ -45,6 +47,8 @@
           (format nil "~A/command2" heater-controller-name))
     (setq heater3-command-topic-name
           (format nil "~A/command3" heater-controller-name))
+    (setq thumb-command-topic-name
+          (format nil "~A/command" thumb-controller-name))
     (ros::advertise thumb-command-topic-name std_msgs::Float64 1)
     (ros::advertise finger1-command-topic-name std_msgs::Float64 1)
     (ros::advertise finger2-command-topic-name std_msgs::Float64 1)
