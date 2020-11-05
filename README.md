@@ -99,8 +99,8 @@ rosrun dynamixel_driver set_servo_config.py -b 1000000 -r 1 MOTOR_ID
 #### For softhand v2
 
 ```bash
-# set baud rate to 57413
-rosrun dynamixel_driver set_servo_config.py -b 57413 -r 1 MOTOR_ID 
+# set baud rate to 57143
+rosrun dynamixel_driver set_servo_config.py -b 57143 -r 1 MOTOR_ID 
 ```
 
 ### Set motor ID
@@ -145,7 +145,7 @@ roslib.load_manifest('dynamixel_driver')
 from dynamixel_driver import dynamixel_io
 
 # for softhand v2
-dxl_io = dynamixel_io.DynamixelIO("/dev/ttyUSB0", 57413)
+dxl_io = dynamixel_io.DynamixelIO("/dev/ttyUSB0", 57600)
 dxl_io.write(MOTOR_ID, 17, (4,))
 dxl_io.write(MOTOR_ID, 18, (4,))
 ```
