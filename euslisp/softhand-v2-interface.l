@@ -4,8 +4,7 @@
 
 (defclass softhand-v2-interface
   :super propertied-object
-  :slots (thumb-controller-name
-          finger1-controller-name
+  :slots (finger1-controller-name
           finger2-controller-name
           finger3-controller-name
           finger1-command-topic-name
