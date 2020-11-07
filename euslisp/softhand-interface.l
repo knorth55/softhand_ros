@@ -30,9 +30,9 @@
           (format nil "~A/command" finger2-controller-name))
     (setq finger3-command-topic-name
           (format nil "~A/command" finger3-controller-name))
-    (ros::advertise  finger1-command-topic-name std_msgs::Float64 1)
-    (ros::advertise  finger2-command-topic-name std_msgs::Float64 1)
-    (ros::advertise  finger3-command-topic-name std_msgs::Float64 1)
+    (ros::advertise finger1-command-topic-name std_msgs::Float64 1)
+    (ros::advertise finger2-command-topic-name std_msgs::Float64 1)
+    (ros::advertise finger3-command-topic-name std_msgs::Float64 1)
     (setq finger1-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger1-controller-name)
@@ -85,9 +85,9 @@
     (ros::spin-once)
     (eq (send finger3-calib-action-client :get-state) ros::*simple-goal-state-active*))
   (:start-grasp ()
-    (send self :finger-all-rotate  (* pi -2.0)))
+    (send self :finger-all-rotate (* pi -2.0)))
   (:stop-grasp ()
-    (send self :finger-all-rotate  pi))
+    (send self :finger-all-rotate pi))
   (:finger-all-rotate (angle)
     (send self :finger1-rotate angle)
     (send self :finger2-rotate angle)
