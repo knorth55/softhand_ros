@@ -1,11 +1,13 @@
 # softhand_ros
-[![](https://img.shields.io/github/workflow/status/knorth55/softhand_ros/CI/master)](https://github.com/knorth55/softhand_ros/actions)
+
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/knorth55/softhand_ros/CI/master)](https://github.com/knorth55/softhand_ros/actions)
 
 ROS package for SoftHand
 
 ## Note
 
 This package depends on the branch below.
+
 - [tohirose/dynamixel_motor@softhand-v2-devel](https://github.com/tohirose/dynamixel_motor/tree/softhand-v2-devel)
 
 ## Installation
@@ -16,7 +18,7 @@ This package depends on the branch below.
 source /opt/ros/$ROS_DISTRO/setup.bash
 mkdir ~/softhand_ws/src -p
 cd ~/softhand_ws/src
-wget https://raw.githubusercontent.com/knorth55/softhand_ros/master/fc.rosinstall -O .rosinstall 
+wget https://raw.githubusercontent.com/knorth55/softhand_ros/master/fc.rosinstall -O .rosinstall
 wstool up
 rosdep install --ignore-src --from-paths . -y -r -i
 cd ~/softhand_ws
@@ -33,7 +35,7 @@ sudo service udev reload
 sudo service udev restart
 ```
 
-## How to use 
+## How to use
 
 ### Launch softhand
 
@@ -93,14 +95,14 @@ roseus softhand-v2-interface.l
 
 ```bash
 # set baud rate to 1000000
-rosrun dynamixel_driver set_servo_config.py -b 1000000 -r 1 MOTOR_ID 
+rosrun dynamixel_driver set_servo_config.py -b 1000000 -r 1 MOTOR_ID
 ```
 
 #### For softhand v2
 
 ```bash
 # set baud rate to 57143
-rosrun dynamixel_driver set_servo_config.py -b 57143 -r 1 MOTOR_ID 
+rosrun dynamixel_driver set_servo_config.py -b 57143 -r 1 MOTOR_ID
 ```
 
 ### Set motor ID
