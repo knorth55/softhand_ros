@@ -21,7 +21,7 @@ finger1_joint_controller:
     module: calib_required_joint_controller
     type: CalibRequiredJointController
   joint_name: finger1_joint_motor
-  joint_speed: 5.5
+  joint_speed: 1.5
   joint_torque_limit: 0.6
   calib_speed: 1.0
   calib_torque_limit: 0.2
