@@ -94,15 +94,15 @@ roseus softhand-v2-interface.l
 #### For softhand v1
 
 ```bash
-# set baud rate to 1000000
-rosrun dynamixel_driver set_servo_config.py -b 1000000 -r 1 MOTOR_ID
+# set baud rate from 57600 to 1000000
+rosrun dynamixel_driver set_servo_config.py -b 57600 -r 1 MOTOR_ID
 ```
 
 #### For softhand v2
 
 ```bash
-# set baud rate to 57143
-rosrun dynamixel_driver set_servo_config.py -b 57143 -r 1 MOTOR_ID
+# set baud rate from 57600 to 57143
+rosrun dynamixel_driver set_servo_config.py -b 57600 -r 34 MOTOR_ID
 ```
 
 ### Set motor ID
