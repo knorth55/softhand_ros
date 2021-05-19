@@ -86,7 +86,7 @@
   (:start-grasp ()
     (send self :finger-all-rotate (* pi -2.0)))
   (:stop-grasp ()
-    (send self :finger-all-rotate pi))
+    (send self :finger-all-rotate (* pi 1.5)))
   (:finger-all-rotate (angle)
     (send self :finger1-rotate angle)
     (send self :finger2-rotate angle)
