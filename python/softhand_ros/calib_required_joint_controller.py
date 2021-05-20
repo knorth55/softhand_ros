@@ -1,13 +1,16 @@
 import rospy
+import time
 
 import actionlib
 from dynamixel_controllers.joint_position_controller \
     import JointPositionController
 
+from dynamixel_msgs.msg import JointState
 from dynamixel_msgs.msg import MotorStateList
 
 from softhand_ros.msg import CalibJointAction
 from softhand_ros.msg import CalibJointResult
+from softhand_ros.msg import DelayedCommand
 
 
 class CalibRequiredJointController(JointPositionController):
@@ -28,6 +31,17 @@ class CalibRequiredJointController(JointPositionController):
             CalibJointAction,
             execute_cb=self.on_calib_action,
             auto_start=False)
+
+    def start(self):
+        self.running = True
+        self.joint_state_pub = rospy.Publisher(
+            self.controller_namespace + '/state', JointState, queue_size=1)
+        self.command_sub = rospy.Subscriber(
+            self.controller_namespace + '/command',
+            DelayedCommand, self.process_command)
+        self.motor_states_sub = rospy.Subscriber(
+            'motor_states/%s' % self.port_namespace,
+            MotorStateList, self.process_motor_states)
 
     def initialize(self):
         if not JointPositionController.initialize(self):
@@ -133,3 +147,11 @@ class CalibRequiredJointController(JointPositionController):
     def __set_speed_wheel(self, speed):
         mcv = (self.motor_id, self.__spd_rad_to_raw_wheel(speed))
         self.dxl_io.set_multi_speed([mcv])
+
+    def process_command(self, msg):
+        delay = msg.delay
+        if delay > 0:
+            time.sleep(delay)
+        angle = msg.command
+        mcv = (self.motor_id, self.pos_rad_to_raw(angle))
+        self.dxl_io.set_multi_position([mcv])

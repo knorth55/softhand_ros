@@ -1,4 +1,3 @@
-(ros::roseus-add-msgs "std_msgs")
 (ros::roseus-add-msgs "softhand_ros")
 
 
@@ -30,9 +29,9 @@
           (format nil "~A/command" finger2-controller-name))
     (setq finger3-command-topic-name
           (format nil "~A/command" finger3-controller-name))
-    (ros::advertise finger1-command-topic-name std_msgs::Float64 1)
-    (ros::advertise finger2-command-topic-name std_msgs::Float64 1)
-    (ros::advertise finger3-command-topic-name std_msgs::Float64 1)
+    (ros::advertise finger1-command-topic-name softhand_ros::DelayedCommand 1)
+    (ros::advertise finger2-command-topic-name softhand_ros::DelayedCommand 1)
+    (ros::advertise finger3-command-topic-name softhand_ros::DelayedCommand 1)
     (setq finger1-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger1-controller-name)
@@ -93,13 +92,13 @@
     (send self :finger2-rotate angle)
     (send self :finger3-rotate angle))
   (:finger1-rotate (angle)
-    (let ((msg (instance std_msgs::Float64 :init :data angle)))
+    (let ((msg (instance softhand_ros::DelayedCommand :init :command angle)))
       (ros::publish finger1-command-topic-name msg)))
   (:finger2-rotate (angle)
-    (let ((msg (instance std_msgs::Float64 :init :data angle)))
+    (let ((msg (instance softhand_ros::DelayedCommand :init :command angle)))
       (ros::publish finger2-command-topic-name msg)))
   (:finger3-rotate (angle)
-    (let ((msg (instance std_msgs::Float64 :init :data angle)))
+    (let ((msg (instance softhand_ros::DelayedCommand :init :command angle)))
       (ros::publish finger3-command-topic-name msg))))
 
 (defun softhand-init ()

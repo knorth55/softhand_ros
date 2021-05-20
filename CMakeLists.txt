@@ -8,6 +8,11 @@ find_package(catkin REQUIRED COMPONENTS
 
 catkin_python_setup()
 
+add_message_files(
+    DIRECTORY msg
+    FILES DelayedCommand.msg
+)
+
 add_action_files(
     DIRECTORY action
     FILES CalibJoint.action
