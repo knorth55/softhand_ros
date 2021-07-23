@@ -11,3 +11,8 @@ class CalibRequiredJointTorqueController(
         JointTorqueController.__init__(
             self, dxl_io, controller_namespace, port_namespace)
         CalibRequiredController.__init__(self)
+
+    def initialize(self):
+        if not JointTorqueController.initialize(self):
+            return False
+        CalibRequiredController.calib_initialize(self)

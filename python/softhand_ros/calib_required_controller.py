@@ -27,9 +27,7 @@ class CalibRequiredController(object):
             execute_cb=self.on_calib_action,
             auto_start=False)
 
-    def initialize(self):
-        if not JointPositionController.initialize(self):
-            return False
+    def calib_initialize(self):
         self.__calib()
         self.calib_server.start()
         return (not rospy.is_shutdown())
