@@ -18,8 +18,8 @@ thumb_joint_controller:
 finger1_joint_controller:
   controller:
     package: softhand_ros
-    module: calib_required_joint_controller
-    type: CalibRequiredJointController
+    module: calib_required_joint_position_controller
+    type: CalibRequiredJointPositionController
   joint_name: finger1_joint_motor
   joint_speed: 5.5
   joint_torque_limit: 0.6
@@ -40,8 +40,8 @@ finger1_joint_controller:
 finger2_joint_controller:
   controller:
     package: softhand_ros
-    module: calib_required_joint_controller
-    type: CalibRequiredJointController
+    module: calib_required_joint_position_controller
+    type: CalibRequiredJointPositionController
   joint_name: finger2_joint_motor
   joint_speed: 5.5
   joint_torque_limit: 0.6
@@ -62,8 +62,8 @@ finger2_joint_controller:
 finger3_joint_controller:
   controller:
     package: softhand_ros
-    module: calib_required_joint_controller
-    type: CalibRequiredJointController
+    module: calib_required_joint_position_controller
+    type: CalibRequiredJointPositionController
   joint_name: finger3_joint_motor
   joint_speed: 5.5
   joint_torque_limit: 0.6

@@ -4,7 +4,7 @@ from dynamixel_controllers.joint_position_controller \
 from softhand_ros.calib_required_controller import CalibRequiredController
 
 
-class CalibRequiredJointController(
+class CalibRequiredJointPositionController(
         JointPositionController, CalibRequiredController
 ):
     def __init__(self, dxl_io, controller_namespace, port_namespace):
