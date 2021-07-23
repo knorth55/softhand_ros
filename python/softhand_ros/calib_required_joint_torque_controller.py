@@ -15,4 +15,4 @@ class CalibRequiredJointTorqueController(
     def initialize(self):
         if not JointTorqueController.initialize(self):
             return False
-        CalibRequiredController.calib_initialize(self)
+        return CalibRequiredController.calib_initialize(self)

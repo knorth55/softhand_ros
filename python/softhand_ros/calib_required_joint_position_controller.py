@@ -15,4 +15,4 @@ class CalibRequiredJointPositionController(
     def initialize(self):
         if not JointPositionController.initialize(self):
             return False
-        CalibRequiredController.calib_initialize(self)
+        return CalibRequiredController.calib_initialize(self)
