@@ -1,8 +1,6 @@
 import rospy
 
 import actionlib
-from dynamixel_controllers.joint_position_controller \
-    import JointPositionController
 
 from softhand_ros.msg import CalibJointAction
 from softhand_ros.msg import CalibJointResult
