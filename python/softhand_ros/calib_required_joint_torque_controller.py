@@ -1,4 +1,4 @@
-from dynamixel_controllers.joint_position_controller \
+from dynamixel_controllers.joint_torque_controller \
     import JointTorqueController
 
 from softhand_ros.calib_required_controller import CalibRequiredController
