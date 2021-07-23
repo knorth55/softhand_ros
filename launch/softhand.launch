@@ -18,6 +18,8 @@
     </rosparam>
   </node>
   <!-- dxl controller spawner -->
+  <rosparam file="$(find softhand_ros)/config/$(arg hand)_hand/dxl_controllers_common.yaml"
+            command="load"/>
   <rosparam file="$(find softhand_ros)/config/$(arg hand)_hand/dxl_$(arg mode)_controllers.yaml"
             command="load"/>
   <node name="controller_spawner"
