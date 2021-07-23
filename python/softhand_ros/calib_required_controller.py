@@ -1,19 +1,15 @@
 import rospy
 
 import actionlib
-from dynamixel_controllers.joint_position_controller \
-    import JointPositionController
-
-from dynamixel_msgs.msg import MotorStateList
 
 from softhand_ros.msg import CalibJointAction
 from softhand_ros.msg import CalibJointResult
 
+from dynamixel_msgs.msg import MotorStateList
 
-class CalibRequiredJointController(JointPositionController):
-    def __init__(self, dxl_io, controller_namespace, port_namespace):
-        JointPositionController.__init__(
-            self, dxl_io, controller_namespace, port_namespace)
+
+class CalibRequiredController(object):
+    def __init__(self):
         self.calib_speed = rospy.get_param(
             '{}/calib_speed'.format(self.controller_namespace), 0.1)
         self.calib_torque_limit = rospy.get_param(
@@ -29,9 +25,7 @@ class CalibRequiredJointController(JointPositionController):
             execute_cb=self.on_calib_action,
             auto_start=False)
 
-    def initialize(self):
-        if not JointPositionController.initialize(self):
-            return False
+    def calib_initialize(self):
         self.__calib()
         self.calib_server.start()
         return (not rospy.is_shutdown())
