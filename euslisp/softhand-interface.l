@@ -111,7 +111,7 @@
   (:finger3-rotate (angle)
     (let ((msg (instance std_msgs::Float64 :init :data angle)))
       (ros::publish finger3-command-topic-name msg)))
-    (:set-torque-limit-all (torque)
+  (:set-torque-limit-all (torque)
     (send self :set-finger1-torque-limit torque)
     (send self :set-finger2-torque-limit torque)
     (send self :set-finger3-torque-limit torque))
@@ -127,6 +127,7 @@
     (let ((req (instance dynamixel_controllers::SetTorqueLimitRequest :init
                          :torque_limit torque)))
       (ros::service-call finger3-set-torque-limit-service-name req))))
+
 
 (defun softhand-init ()
   (ros::roseus "softhand_interface")
