@@ -170,15 +170,15 @@
     (send self :set-finger2-torque-limit torque)
     (send self :set-finger3-torque-limit torque))
   (:set-finger1-torque-limit (torque)
-    (let ((req (instance dynamixel_controllers::SetTorqueLimit :init
+    (let ((req (instance dynamixel_controllers::SetTorqueLimitRequest :init
                          :torque_limit torque)))
       (ros::service-call finger1-set-torque-limit-service-name req)))
   (:set-finger2-torque-limit (torque)
-    (let ((req (instance dynamixel_controllers::SetTorqueLimit :init
+    (let ((req (instance dynamixel_controllers::SetTorqueLimitRequest :init
                          :torque_limit torque)))
       (ros::service-call finger2-set-torque-limit-service-name req)))
   (:set-finger3-torque-limit (torque)
-    (let ((req (instance dynamixel_controllers::SetTorqueLimit :init
+    (let ((req (instance dynamixel_controllers::SetTorqueLimitRequest :init
                          :torque_limit torque)))
       (ros::service-call finger3-set-torque-limit-service-name req))))
 
