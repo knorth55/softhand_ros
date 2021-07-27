@@ -1,5 +1,6 @@
 (ros::roseus-add-msgs "std_msgs")
 (ros::roseus-add-msgs "softhand_ros")
+(ros::roseus-add-srvs "dynamixel_controllers")
 
 
 (defclass softhand-interface
@@ -13,6 +14,9 @@
           finger1-calib-action-client
           finger2-calib-action-client
           finger3-calib-action-client
+          finger1-set-torque-limit-service-name
+          finger2-set-torque-limit-service-name
+          finger3-set-torque-limit-service-name
   ))
 
 (defmethod softhand-interface
@@ -30,6 +34,12 @@
           (format nil "~A/command" finger2-controller-name))
     (setq finger3-command-topic-name
           (format nil "~A/command" finger3-controller-name))
+    (setq finger1-set-torque-limit-service-name
+          (format nil "~A/set_torque_limit" finger1-controller-name))
+    (setq finger2-set-torque-limit-service-name
+          (format nil "~A/set_torque_limit" finger2-controller-name))
+    (setq finger3-set-torque-limit-service-name
+          (format nil "~A/set_torque_limit" finger3-controller-name))
     (ros::advertise finger1-command-topic-name std_msgs::Float64 1)
     (ros::advertise finger2-command-topic-name std_msgs::Float64 1)
     (ros::advertise finger3-command-topic-name std_msgs::Float64 1)
@@ -100,7 +110,24 @@
       (ros::publish finger2-command-topic-name msg)))
   (:finger3-rotate (angle)
     (let ((msg (instance std_msgs::Float64 :init :data angle)))
-      (ros::publish finger3-command-topic-name msg))))
+      (ros::publish finger3-command-topic-name msg)))
+  (:set-torque-limit-all (torque)
+    (send self :set-finger1-torque-limit torque)
+    (send self :set-finger2-torque-limit torque)
+    (send self :set-finger3-torque-limit torque))
+  (:set-finger1-torque-limit (torque)
+    (let ((req (instance dynamixel_controllers::SetTorqueLimitRequest :init
+                         :torque_limit torque)))
+      (ros::service-call finger1-set-torque-limit-service-name req)))
+  (:set-finger2-torque-limit (torque)
+    (let ((req (instance dynamixel_controllers::SetTorqueLimitRequest :init
+                         :torque_limit torque)))
+      (ros::service-call finger2-set-torque-limit-service-name req)))
+  (:set-finger3-torque-limit (torque)
+    (let ((req (instance dynamixel_controllers::SetTorqueLimitRequest :init
+                         :torque_limit torque)))
+      (ros::service-call finger3-set-torque-limit-service-name req))))
+
 
 (defun softhand-init ()
   (ros::roseus "softhand_interface")
