@@ -8,7 +8,7 @@ ROS package for SoftHand
 
 This package depends on the branch below.
 
-- [tohirose/dynamixel_motor@softhand-v2-devel](https://github.com/tohirose/dynamixel_motor/tree/softhand-v2-devel)
+- [pazeshun/dynamixel_motor@gripper-v6-devel](https://github.com/pazeshun/dynamixel_motor/tree/gripper-v6-devel)
 
 ## Installation
 
