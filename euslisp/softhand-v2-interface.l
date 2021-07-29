@@ -1,5 +1,5 @@
 (ros::roseus-add-msgs "std_msgs")
-(ros::roseus-add-msgs "softhand_ros")
+(ros::roseus-add-msgs "dynamixel_controllers")
 (ros::roseus-add-srvs "dynamixel_controllers")
 
 
@@ -68,15 +68,15 @@
     (setq finger1-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger1-controller-name)
-                    softhand_ros::CalibJointAction))
+                    dynamixel_controllers::CalibJointAction))
     (setq finger2-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger2-controller-name)
-                    softhand_ros::CalibJointAction))
+                    dynamixel_controllers::CalibJointAction))
     (setq finger3-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger3-controller-name)
-                    softhand_ros::CalibJointAction))
+                    dynamixel_controllers::CalibJointAction))
     (when calibrate (send self :calibrate))
     self)
   (:calibrate ()
@@ -100,13 +100,13 @@
       (ros::spin-once)))
   (:start-finger1-calib ()
     (send finger1-calib-action-client :send-goal
-          (instance softhand_ros::CalibJointActionGoal :init)))
+          (instance dynamixel_controllers::CalibJointActionGoal :init)))
   (:start-finger2-calib ()
     (send finger2-calib-action-client :send-goal
-          (instance softhand_ros::CalibJointActionGoal :init)))
+          (instance dynamixel_controllers::CalibJointActionGoal :init)))
   (:start-finger3-calib ()
     (send finger3-calib-action-client :send-goal
-          (instance softhand_ros::CalibJointActionGoal :init)))
+          (instance dynamixel_controllers::CalibJointActionGoal :init)))
   (:finger1-calibratingp ()
     (ros::spin-once)
     (eq (send finger1-calib-action-client :get-state) ros::*simple-goal-state-active*))
