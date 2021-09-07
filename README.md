@@ -1,6 +1,7 @@
 # softhand_ros
 
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/knorth55/softhand_ros/CI/master)](https://github.com/knorth55/softhand_ros/actions)
+[![main](https://github.com/knorth55/softhand_ros/actions/workflows/main.yml/badge.svg)](https://github.com/knorth55/softhand_ros/actions/workflows/main.yml)
+[![linter](https://github.com/knorth55/softhand_ros/actions/workflows/linter.yaml/badge.svg)](https://github.com/knorth55/softhand_ros/actions/workflows/linter.yaml)
 
 ROS package for SoftHand
 
