@@ -56,9 +56,12 @@
     (ros::advertise finger1-command-topic-name std_msgs::Float64 1)
     (ros::advertise finger2-command-topic-name std_msgs::Float64 1)
     (ros::advertise finger3-command-topic-name std_msgs::Float64 1)
-    (ros::subscribe finger1-state-topic-name dynamixel_msgs::JointState #'send self :finger1-state-cb)
-    (ros::subscribe finger2-state-topic-name dynamixel_msgs::JointState #'send self :finger2-state-cb)
-    (ros::subscribe finger3-state-topic-name dynamixel_msgs::JointState #'send self :finger3-state-cb)
+    (ros::subscribe finger1-state-topic-name
+                    dynamixel_msgs::JointState #'send self :finger1-state-cb)
+    (ros::subscribe finger2-state-topic-name
+                    dynamixel_msgs::JointState #'send self :finger2-state-cb)
+    (ros::subscribe finger3-state-topic-name
+                    dynamixel_msgs::JointState #'send self :finger3-state-cb)
     (setq finger1-calib-action-client
           (instance ros::simple-action-client :init
                     (format nil "~A/calib" finger1-controller-name)
@@ -142,66 +145,66 @@
   (:get-finger1-state-msg (&key (timeout 10))
     (let ((now (ros::time-now)))
       (while (or (not finger1-state-msg)
-	(not (> (send (send finger1-state-msg :header :stamp) :to-nsec)
-		(send now :to-nsec))))
-	(progn
+    (not (> (send (send finger1-state-msg :header :stamp) :to-nsec)
+        (send now :to-nsec))))
+    (progn
           ;; (ros::ros-warn "waiting for new topic arrival")
           (ros::spin-once)
-	  (if (> (- (send (ros::time-now) :to-sec)
-		    (send now :to-sec)) timeout)
-	      (return-from :get-finger1-state-msg nil))))
+      (if (> (- (send (ros::time-now) :to-sec)
+            (send now :to-sec)) timeout)
+          (return-from :get-finger1-state-msg nil))))
       (return-from :get-finger1-state-msg finger1-state-msg)
       ))
   (:get-finger2-state-msg (&key (timeout 10))
     (let ((now (ros::time-now)))
       (while (or (not finger2-state-msg)
-	(not (> (send (send finger2-state-msg :header :stamp) :to-nsec)
-		(send now :to-nsec))))
-	(progn
+    (not (> (send (send finger2-state-msg :header :stamp) :to-nsec)
+        (send now :to-nsec))))
+    (progn
           ;; (ros::ros-warn "waiting for new topic arrival")
           (ros::spin-once)
-	  (if (> (- (send (ros::time-now) :to-sec)
-		    (send now :to-sec)) timeout)
-	      (return-from :get-finger2-state-msg nil))))
+      (if (> (- (send (ros::time-now) :to-sec)
+            (send now :to-sec)) timeout)
+          (return-from :get-finger2-state-msg nil))))
       (return-from :get-finger2-state-msg finger2-state-msg)
       ))
   (:get-finger3-state-msg (&key (timeout 10))
     (let ((now (ros::time-now)))
       (while (or (not finger3-state-msg)
-	(not (> (send (send finger3-state-msg :header :stamp) :to-nsec)
-		(send now :to-nsec))))
-	(progn
+    (not (> (send (send finger3-state-msg :header :stamp) :to-nsec)
+        (send now :to-nsec))))
+    (progn
           ;; (ros::ros-warn "waiting for new topic arrival")
           (ros::spin-once)
-	  (if (> (- (send (ros::time-now) :to-sec)
-		    (send now :to-sec)) timeout)
-	      (return-from :get-finger3-state-msg nil))))
+      (if (> (- (send (ros::time-now) :to-sec)
+            (send now :to-sec)) timeout)
+          (return-from :get-finger3-state-msg nil))))
       (return-from :get-finger3-state-msg finger3-state-msg)
       ))
   (:get-finger1-current-pos ()
     (let ((finger-state-msg))
       (setq finger-state-msg (send self :get-finger1-state-msg))
       (if finger-state-msg
-	(progn
-	  (setq finger-current-pos (send finger-state-msg :current_pos))
-	  (return-from :get-finger1-current-pos finger-current-pos))
-	(return-from :get-finger1-current-pos nil))))
+    (progn
+      (setq finger-current-pos (send finger-state-msg :current_pos))
+      (return-from :get-finger1-current-pos finger-current-pos))
+    (return-from :get-finger1-current-pos nil))))
   (:get-finger2-current-pos ()
     (let ((finger-state-msg))
       (setq finger-state-msg (send self :get-finger2-state-msg))
       (if finger-state-msg
-	(progn
-	  (setq finger-current-pos (send finger-state-msg :current_pos))
-	  (return-from :get-finger2-current-pos finger-current-pos))
-	(return-from :get-finger2-current-pos nil))))
+    (progn
+      (setq finger-current-pos (send finger-state-msg :current_pos))
+      (return-from :get-finger2-current-pos finger-current-pos))
+    (return-from :get-finger2-current-pos nil))))
   (:get-finger3-current-pos ()
     (let ((finger-state-msg))
       (setq finger-state-msg (send self :get-finger3-state-msg))
       (if finger-state-msg
-	(progn
-	  (setq finger-current-pos (send finger-state-msg :current_pos))
-	  (return-from :get-finger3-current-pos finger-current-pos))
-	(return-from :get-finger3-current-pos nil))))
+    (progn
+      (setq finger-current-pos (send finger-state-msg :current_pos))
+      (return-from :get-finger3-current-pos finger-current-pos))
+    (return-from :get-finger3-current-pos nil))))
   (:set-torque-limit-all (torque)
     (send self :set-finger1-torque-limit torque)
     (send self :set-finger2-torque-limit torque)
