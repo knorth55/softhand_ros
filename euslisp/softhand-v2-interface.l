@@ -121,7 +121,7 @@
     (send self :finger3-rotate (* pi -2.0))
     (send self :finger1-rotate (* pi -2.0)))
   (:stop-grasp ()
-    (send self :finger1-rotate (* pi 1.5))
+    (send self :finger1-rotate (* pi 1.0))
     (send self :finger2-rotate (* pi 2.0))
     (send self :finger3-rotate (* pi 2.0)))
   (:open-thumb ()
