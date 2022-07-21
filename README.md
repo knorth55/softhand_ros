@@ -1,3 +1,5 @@
+# This project has moved to [jsk-ros-pkg/jsk_robot](https://github.com/jsk-ros-pkg/jsk_robot).
+
 # softhand_ros
 
 [![main](https://github.com/knorth55/softhand_ros/actions/workflows/main.yml/badge.svg)](https://github.com/knorth55/softhand_ros/actions/workflows/main.yml)
