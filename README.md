@@ -1,4 +1,4 @@
-# This project has moved to [jsk-ros-pkg/jsk_robot](https://github.com/jsk-ros-pkg/jsk_robot).
+# This project is merged to [jsk-ros-pkg/jsk_robot](https://github.com/jsk-ros-pkg/jsk_robot).
 
 # softhand_ros
 
